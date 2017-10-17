@@ -29,6 +29,10 @@ alias man="LANG=en_US man"
 bindkey '^[[1~' beginning-of-line
 bindkey '^[[4~' end-of-line
 
+# Żeby działał Alt lewo/prawo.
+bindkey '^[b' backward-word
+bindkey '^[f' forward-word
+
 # Żeby działał delete.
 bindkey '^[[3~' delete-char
 
@@ -38,7 +42,7 @@ bindkey -M viins '^R' history-incremental-search-backward
 bindkey -M vicmd '^R' history-incremental-search-backward
 
 # Żeby ^W wszędzie działało tak samo.
-bindkey ^W backward-kill-word
+bindkey '^W' backward-kill-word
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>';
 
 # Żeby ZSH kumało pliterki w nazwach katalogów w Mac OS X
@@ -50,3 +54,6 @@ function n () {
 		napiconvert $i;
 	done
 }
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
