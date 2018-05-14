@@ -9,8 +9,8 @@ export LANG=`locale -a | grep -i pl | grep -i utf | head -1`;
 # Kilka istotnych zmiennych.
 export EDITOR="vim";
 export HISTFILE="${HOME}/.history";
-export HISTSIZE="1000";
-export SAVEHIST="1000";
+export HISTSIZE="100000";
+export SAVEHIST="100000";
 export PATH="${PATH}:/usr/local/bin:/opt/local/bin";
 
 # Java
@@ -35,6 +35,7 @@ bindkey '^[f' forward-word
 
 # Żeby działał delete.
 bindkey '^[[3~' delete-char
+bindkey '^?' backward-delete-char
 
 # Ctrl+R gdy ZSH ustawi sobie tryb vi (cokolwiek to jest) 
 # ustawiany jest przy EDITOR="vi*" ale czasem nie :P
@@ -48,12 +49,34 @@ export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>';
 # Żeby ZSH kumało pliterki w nazwach katalogów w Mac OS X
 setopt combiningchars
 
-function n () {
-	for i in $*; do
-		napi $i;
-		napiconvert $i;
-	done
+##### workplace specific code #####
+
+# Add PyENV shims to PATH.
+export PATH="$HOME/.pyenv/shims:$PATH"
+export PYENV_SHELL=zsh
+command pyenv rehash 2>/dev/null
+
+pyenv() {
+  local command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(pyenv "sh-$command" "$@")";;
+  *)
+    command pyenv "$command" "$@";;
+  esac
 }
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Disable ClamAV in tests
+export NOCLAMAV=1
+
+# Switching AWS profile
+alias aws-profile='function(){eval $(~/Projects/aws-inf/scripts/aws-profile-go/aws-profile $@);}'
+alias kibana='~/Projects/aws-inf/scripts/search-kibana-go/search-kibana.sh'
