@@ -4,17 +4,13 @@ export PS2=": ";
 export PS4="+ ";
 
 # Żeby zawsze sobie wybierał właściwe kodowanie.
-export LANG=`locale -a | grep -i pl | grep -i utf | head -1`;
+# export LANG=`locale -a | grep -i pl | grep -i utf | head -1`;
 
 # Kilka istotnych zmiennych.
 export EDITOR="vim";
-export HISTFILE="${HOME}/.history";
 export HISTSIZE="100000";
 export SAVEHIST="100000";
-export PATH="${PATH}:/usr/local/bin:/opt/local/bin";
-
-# Java
-export JAVA_HOME=$(/usr/libexec/java_home);
+export PATH="${PATH}:/usr/local/bin:/opt/local/bin:/opt/homebrew/bin";
 
 # Aliasy tak jak lubię.
 alias du="du -h"
