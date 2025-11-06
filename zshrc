@@ -10,7 +10,7 @@ export PS4="+ ";
 export EDITOR="vim";
 export HISTSIZE="100000";
 export SAVEHIST="100000";
-export PATH="${PATH}:/usr/local/bin:/opt/local/bin:/opt/homebrew/bin";
+export PATH="${PATH}:/opt/homebrew/bin";
 
 # Aliasy tak jak lubię.
 alias du="du -h"
@@ -45,34 +45,11 @@ export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>';
 # Żeby ZSH kumało pliterki w nazwach katalogów w Mac OS X
 setopt combiningchars
 
-##### workplace specific code #####
+# PyENV
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
 
-# Add PyENV shims to PATH.
-export PATH="$HOME/.pyenv/shims:$PATH"
-export PYENV_SHELL=zsh
-command pyenv rehash 2>/dev/null
-
-pyenv() {
-  local command
-  command="$1"
-  if [ "$#" -gt 0 ]; then
-    shift
-  fi
-
-  case "$command" in
-  rehash|shell)
-    eval "$(pyenv "sh-$command" "$@")";;
-  *)
-    command pyenv "$command" "$@";;
-  esac
-}
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-
-# Disable ClamAV in tests
-export NOCLAMAV=1
-
-# Switching AWS profile
-alias aws-profile='function(){eval $(~/Projects/aws-inf/scripts/aws-profile-go/aws-profile $@);}'
-alias kibana='~/Projects/aws-inf/scripts/search-kibana-go/search-kibana.sh'
