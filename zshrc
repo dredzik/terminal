@@ -1,55 +1,36 @@
-# Wygląd promptów.
+# Prompts
 export PS1="[%n@%m:%~] [%l]: ";
 export PS2=": ";
 export PS4="+ ";
 
-# Żeby zawsze sobie wybierał właściwe kodowanie.
-# export LANG=`locale -a | grep -i pl | grep -i utf | head -1`;
-
-# Kilka istotnych zmiennych.
+# Exports
 export EDITOR="vim";
 export HISTSIZE="100000";
 export SAVEHIST="100000";
-export PATH="${PATH}:/opt/homebrew/bin";
 
-# Aliasy tak jak lubię.
-alias du="du -h"
+# Aliases
 alias df="df -h"
-alias ssh="ssh -C"
-alias sftp="sftp -C"
+alias du="du -h"
+alias jq="jq --ascii-output --monochrome-output --raw-output"
 alias ls="ls -l"
-alias unrar="unrar x"
-alias man="LANG=en_US man"
-
-# Żeby działał Home i End.
-bindkey '^[[1~' beginning-of-line
-bindkey '^[[4~' end-of-line
-
-# Żeby działał Alt lewo/prawo.
-bindkey '^[b' backward-word
-bindkey '^[f' forward-word
-
-# Żeby działał delete.
-bindkey '^[[3~' delete-char
-bindkey '^?' backward-delete-char
+alias sftp="sftp -C"
+alias ssh="ssh -C"
 
 # Ctrl+R gdy ZSH ustawi sobie tryb vi (cokolwiek to jest) 
 # ustawiany jest przy EDITOR="vi*" ale czasem nie :P
-bindkey -M viins '^R' history-incremental-search-backward
-bindkey -M vicmd '^R' history-incremental-search-backward
+# bindkey -M viins '^R' history-incremental-search-backward
+# bindkey -M vicmd '^R' history-incremental-search-backward
 
-# Żeby ^W wszędzie działało tak samo.
-bindkey '^W' backward-kill-word
-export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>';
+# Word separators
+export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'; 
 
-# Żeby ZSH kumało pliterki w nazwach katalogów w Mac OS X
+# Polish letters in folder names
 setopt combiningchars
 
-# PyENV
+# Paths
 export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$PYENV_ROOT/bin:$PATH:/opt/homebrew/bin:$HOME/.rvm/bin"
+
+# Shims
 eval "$(pyenv init - zsh)"
-
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+eval "$(jenv init -)"
