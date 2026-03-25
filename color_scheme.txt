@@ -1,0 +1,19 @@
+dark
+black   = #14191e
+red     = #b5001e
+green   = #169302
+yellow  = #b5b200
+blue    = #0059ba
+magenta = #a500b5
+cyan    = #0078b5
+white   = #faebd7
+
+light
+black   = #676767
+red     = #ff6b6b
+green   = #6bffc8
+yellow  = #fff26b
+blue    = #6bb2ff
+magenta = #f76bff
+cyan    = #6bd5ff
+white	  = #e5e5e5
