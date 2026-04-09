@@ -1,0 +1,10 @@
+[user]
+	email = github@typedef.io
+	name = Adam Kuczyński
+[alias]
+	pl = log --oneline
+  ns = diff --name-status master
+[pull]
+	rebase = true
+[core]
+	excludesfile = /Users/ak/.gitignore_global
