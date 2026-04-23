@@ -18,8 +18,8 @@ alias ssh="ssh -C"
 
 # Ctrl+R gdy ZSH ustawi sobie tryb vi (cokolwiek to jest) 
 # ustawiany jest przy EDITOR="vi*" ale czasem nie :P
-# bindkey -M viins '^R' history-incremental-search-backward
-# bindkey -M vicmd '^R' history-incremental-search-backward
+bindkey -M viins '^R' history-incremental-search-backward
+bindkey -M vicmd '^R' history-incremental-search-backward
 
 # Word separators
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'; 
