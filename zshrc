@@ -16,8 +16,11 @@ alias ls="ls -l"
 alias sftp="sftp -C"
 alias ssh="ssh -C"
 
-# Ctrl+R gdy ZSH ustawi sobie tryb vi (cokolwiek to jest) 
-# ustawiany jest przy EDITOR="vi*" ale czasem nie :P
+# Move back and forth
+bindkey "^[b" backward-word
+bindkey "^[f" forward-word
+
+# Vim search
 bindkey -M viins '^R' history-incremental-search-backward
 bindkey -M vicmd '^R' history-incremental-search-backward
 
